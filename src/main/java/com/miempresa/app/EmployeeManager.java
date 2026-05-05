@@ -3,42 +3,20 @@ package com.miempresa.app;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Gestión de empleados mejorada mediante colecciones dinámicas.
- * @author irenemacarro
- */
 public class EmployeeManager {
-    // REFACTORIZACIÓN: Se eliminan los arrays String[] e int[] de tamaño 10
-    // Ahora usamos una lista de objetos Employee que crece automáticamente
+    // Propiedad privada: Nadie desde fuera de esta clase puede tocar la lista directamente
     private List<Employee> employees = new ArrayList<>();
 
-    /**
-     * Añade un empleado sin restricción de capacidad máxima.
-     * @param name Nombre del empleado
-     * @param years Años en la empresa
-     */
+    // Método público: La única forma "legal" de añadir un empleado
     public void addEmployee(String name, int years) {
-        // Se crea el objeto y se añade a la lista
         employees.add(new Employee(name, years));
-        System.out.println(name + " añadido correctamente.");
     }
 
-    /**
-     * Imprime los empleados de la lista.
-     */
+    // Método público: La forma controlada de ver la información
     public void printEmployees() {
-        System.out.println("List of employees:");
-        // Uso de bucle for-each para mayor claridad
         for (Employee emp : employees) {
-            System.out.println(emp.getName() + ", Years: " + emp.getYears());
+            // Accedemos a los datos de Employee mediante sus métodos públicos (getName/getYears)
+            System.out.println("Empleado: " + emp.getName() + " | Años: " + emp.getYears());
         }
-    }
-
-    public static void main(String[] args) {
-        EmployeeManager manager = new EmployeeManager();
-        // Ahora puedes añadir más de 10 empleados si quisieras
-        manager.addEmployee("John Doe", 5);
-        manager.addEmployee("Jane Smith", 2);
-        manager.printEmployees();
     }
 }

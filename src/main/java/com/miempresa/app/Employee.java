@@ -1,32 +1,36 @@
 package com.miempresa.app;
 
 /**
- * Clase que encapsula la información de un empleado.
- * Esta refactorización mejora la cohesión del diseño.
- * 
+ * Clase Employee con encapsulación aplicada.
  * @author irenemacarro
- * @version 1.0
  */
 public class Employee {
+    // Propiedades privadas: No se pueden ver ni cambiar directamente desde fuera
     private String name;
     private int years;
 
-    /**
-     * Constructor para crear un nuevo empleado.
-     * @param name Nombre del empleado.
-     * @param years Años de antigüedad en la empresa.
-     */
     public Employee(String name, int years) {
         this.name = name;
         this.years = years;
     }
 
-    // Métodos Getter para acceder a los datos
+    // Métodos públicos (Getters) para leer los datos de forma controlada
     public String getName() {
         return name;
     }
 
     public int getYears() {
         return years;
+    }
+
+    // Métodos públicos (Setters) para modificar los datos si fuera necesario
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setYears(int years) {
+        if (years >= 0) { // Ejemplo de control: no pueden ser años negativos
+            this.years = years;
+        }
     }
 }
